@@ -298,7 +298,11 @@ typedef void (^ViewActionBlock)(UIView *view);
         CGRect paneViewFrame = self.paneView.frame;
         switch (self.openDirection) {
             case MSNavigationPaneOpenDirectionLeft:
-                paneViewFrame.origin.x = CGRectGetWidth(self.view.frame) + MSNavigationPaneOpenAnimationOvershot;
+                if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+                    paneViewFrame.origin.x = CGRectGetWidth(self.view.frame) + MSNavigationPaneOpenAnimationOvershot-200;
+                }else{
+                    paneViewFrame.origin.x = CGRectGetWidth(self.view.frame) + MSNavigationPaneOpenAnimationOvershot;
+                }
                 break;
             case MSNavigationPaneOpenDirectionTop:
                 paneViewFrame.origin.y = CGRectGetHeight(self.view.frame) + MSNavigationPaneOpenAnimationOvershot;
